@@ -7,6 +7,7 @@
 import Foundation
 
 internal class {{projectName}}API {
+    internal static var host: String = ""
     internal static var credential: URLCredential?
     internal static var customHeaders: [String:String] = [:]
     internal static var requestBuilderFactory: RequestBuilderFactory = AlamofireRequestBuilderFactory()
