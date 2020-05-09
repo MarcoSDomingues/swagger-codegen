@@ -17,6 +17,9 @@ extension {{projectName}}API {
 {{#description}}
 /** {{description}} */{{/description}}
 internal class {{classname}} {
+
+    internal static var basePath = "{{{basePath}}}"
+
 {{#operation}}
     {{#allParams}}
     {{#isEnum}}
@@ -118,7 +121,7 @@ internal class {{classname}} {
         let {{paramName}}PreEscape = "\({{paramName}}{{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}.rawValue{{/isContainer}}{{/isEnum}})"
         let {{paramName}}PostEscape = {{paramName}}PreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{{=<% %>=}}{<%baseName%>}<%={{ }}=%>", with: {{paramName}}PostEscape, options: .literal, range: nil){{/pathParams}}
-        let URLString = {{projectName}}API.basePath + path
+        let URLString = {{classname}}.basePath + path
         {{#bodyParam}}
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: {{paramName}})
         {{/bodyParam}}
